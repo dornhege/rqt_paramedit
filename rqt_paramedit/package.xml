@@ -1,6 +1,6 @@
 <package>
   <name>rqt_paramedit</name>
-  <version>0.9.0</version>
+  <version>1.0.0</version>
   <description>
      rqt_paramedit - a rqt plugin for editing parameters using qt_paramedit.
   </description>
