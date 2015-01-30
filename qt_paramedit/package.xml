@@ -9,8 +9,8 @@
   <license>BSD</license>
 
   <url type="website">http://ros.org/wiki/qt_paramedit</url>
-  <url type="repository">https://github.com/dornhege/qt_paramedit</url>
-  <url type="bugtracker">https://github.com/dornhege/qt_paramedit/issues</url>
+  <url type="repository">https://github.com/dornhege/rqt_paramedit</url>
+  <url type="bugtracker">https://github.com/dornhege/rqt_paramedit/issues</url>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>

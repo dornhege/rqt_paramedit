@@ -44,7 +44,7 @@ QT4_WRAP_CPP(qt_moc_srcs ${qt_hdrs})
 
 catkin_package(
     INCLUDE_DIRS include
-    LIBRARIES xmlRpxModel
+    LIBRARIES xmlRpcModel
     CATKIN_DEPENDS roscpp
     DEPENDS libqt4-dev
 )
