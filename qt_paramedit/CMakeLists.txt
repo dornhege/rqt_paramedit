@@ -10,13 +10,13 @@ set( QT_USE_QTXML TRUE )
 include(${QT_USE_FILE})
 
 # needed: otherwise boost signals name clash
-ADD_DEFINITIONS(-DQT_NO_KEYWORDS)
+add_definitions(-DQT_NO_KEYWORDS)
 
-QT4_WRAP_UI(uis_h
+qt4_wrap_ui(uis_h
    src/MainWindow.ui
    src/SettingsDialog.ui)
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR} include ${catkin_INCUDE_DIRS})
+include_directories(${CMAKE_CURRENT_BINARY_DIR} include ${catkin_INCLUDE_DIRS})
 
 set(qt_lib_srcs
    src/xmlRpcTreeItem.cpp
@@ -37,10 +37,10 @@ set(qt_hdrs
    src/settingsDialog.h)
 
 qt4_automoc(${qt_lib_srcs})
-QT4_WRAP_CPP(qt_moc_lib_srcs ${qt_lib_hdrs})
+qt4_wrap_cpp(qt_moc_lib_srcs ${qt_lib_hdrs})
 
 qt4_automoc(${qt_srcs})
-QT4_WRAP_CPP(qt_moc_srcs ${qt_hdrs})
+qt4_wrap_cpp(qt_moc_srcs ${qt_hdrs})
 
 catkin_package(
     INCLUDE_DIRS include

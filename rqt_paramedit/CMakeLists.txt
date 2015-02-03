@@ -41,7 +41,7 @@ include_directories(${rqt_paramedit_INCLUDE_DIRECTORIES} ${catkin_INCLUDE_DIRS})
 add_library(${PROJECT_NAME} ${rqt_paramedit_SRCS} ${rqt_paramedit_MOCS} ${uis_h})
 target_link_libraries(${PROJECT_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${catkin_LIBRARIES})
 
-find_package(class_loader)
+find_package(class_loader REQUIRED)
 class_loader_hide_library_symbols(${PROJECT_NAME})
 
 install(FILES rqt_paramedit_plugin.xml
