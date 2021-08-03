@@ -3,57 +3,52 @@ project(qt_paramedit)
 
 find_package(catkin REQUIRED COMPONENTS roscpp)
 
-find_package(Qt4 REQUIRED)
-set( QT_USE_QTGUI TRUE )
-set( QT_USE_QTOPENGL TRUE )
-set( QT_USE_QTXML TRUE )
-include(${QT_USE_FILE})
+find_package(Qt5 COMPONENTS Core Gui OpenGL Xml REQUIRED)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
 # needed: otherwise boost signals name clash
 add_definitions(-DQT_NO_KEYWORDS)
 
-qt4_wrap_ui(uis_h
-   src/MainWindow.ui
-   src/SettingsDialog.ui)
-
 include_directories(${CMAKE_CURRENT_BINARY_DIR} include ${catkin_INCLUDE_DIRS})
-
-set(qt_lib_srcs
-   src/xmlRpcTreeItem.cpp
-   src/xmlRpcItemDelegate.cpp
-   src/xmlRpcModel.cpp)
-
-set(qt_lib_hdrs
-   include/qt_paramedit/xmlRpcTreeItem.h
-   include/qt_paramedit/xmlRpcItemDelegate.h
-   include/qt_paramedit/xmlRpcModel.h)
-
-set(qt_srcs
-   src/MainWindow.cpp
-   src/settingsDialog.cpp)
-
-set(qt_hdrs
-   src/MainWindow.h
-   src/settingsDialog.h)
-
-qt4_automoc(${qt_lib_srcs})
-qt4_wrap_cpp(qt_moc_lib_srcs ${qt_lib_hdrs})
-
-qt4_automoc(${qt_srcs})
-qt4_wrap_cpp(qt_moc_srcs ${qt_hdrs})
 
 catkin_package(
     INCLUDE_DIRS include
     LIBRARIES xmlRpcModel
     CATKIN_DEPENDS roscpp
-    DEPENDS libqt4-dev
+    DEPENDS libqt5-widgets libqt5-core libqt5-gui
 )
 
-add_library(xmlRpcModel ${qt_lib_srcs} ${qt_moc_lib_srcs})
-target_link_libraries(xmlRpcModel ${QT_LIBRARIES} ${catkin_LIBRARIES})
+add_library(xmlRpcModel
+   include/qt_paramedit/xmlRpcTreeItem.h
+   include/qt_paramedit/xmlRpcItemDelegate.h
+   include/qt_paramedit/xmlRpcModel.h
+   src/xmlRpcTreeItem.cpp
+   src/xmlRpcItemDelegate.cpp
+   src/xmlRpcModel.cpp
+    )
+target_link_libraries(xmlRpcModel
+    Qt5::Core
+    Qt5::Gui
+    Qt5::Widgets
+    Qt5::Xml
+    ${catkin_LIBRARIES})
 
-add_executable(${PROJECT_NAME} ${uis_h} ${qt_srcs} ${qt_moc_srcs} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} xmlRpcModel ${catkin_LIBRARIES})
+add_executable(${PROJECT_NAME}
+    src/MainWindow.ui
+    src/SettingsDialog.ui
+   src/MainWindow.cpp
+   src/settingsDialog.cpp
+    src/main.cpp)
+target_link_libraries(${PROJECT_NAME}
+    Qt5::Core
+    Qt5::Gui
+    Qt5::Widgets
+    Qt5::OpenGL
+    Qt5::Xml
+    xmlRpcModel
+    ${catkin_LIBRARIES})
 
 install(TARGETS ${PROJECT_NAME} xmlRpcModel
    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
