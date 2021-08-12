@@ -18,7 +18,7 @@ set(rqt_paramedit_INCLUDE_DIRECTORIES
     )
 
 catkin_package(
-    INCLUDE_DIRS ${rqt_paramedit_INCLUDE_DIRECTORIES}
+    INCLUDE_DIRS include
     LIBRARIES ${PROJECT_NAME}
     CATKIN_DEPENDS roscpp qt_paramedit rqt_gui_cpp rqt_gui
 )
