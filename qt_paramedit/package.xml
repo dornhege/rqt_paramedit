@@ -1,6 +1,6 @@
 <package format="2">
   <name>qt_paramedit</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <description>
      A GUI application for viewing and editing ROS parameters.
   </description>
