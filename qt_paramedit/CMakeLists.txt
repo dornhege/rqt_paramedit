@@ -17,7 +17,6 @@ catkin_package(
     INCLUDE_DIRS include
     LIBRARIES xmlRpcModel
     CATKIN_DEPENDS roscpp
-    DEPENDS libqt5-widgets libqt5-core libqt5-gui
 )
 
 add_library(xmlRpcModel
